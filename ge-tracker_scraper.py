@@ -7,20 +7,12 @@ from bs4 import BeautifulSoup
 print()
 
 #All dictionaries of items and their URL's.
-items = {
-	"Warrior Ring": "https://www.ge-tracker.com/item/warrior-ring",
-	"Mystic Mud Staff": "https://www.ge-tracker.com/item/mystic-mud-staff",
-	"Death Rune": "https://www.ge-tracker.com/item/death-rune",
-}
+from items import *
+from sets import *
 
-ancientPageSet = {
-	"Ancient Page 1": "https://www.ge-tracker.com/item/ancient-page-1",
-	"Ancient Page 2": "https://www.ge-tracker.com/item/ancient-page-2",
-	"Ancient Page 3": "https://www.ge-tracker.com/item/ancient-page-3",
-	"Ancient Page 4": "https://www.ge-tracker.com/item/ancient-page-4",
-	"Set": "https://www.ge-tracker.com/item/book-of-darkness-page-set",
-}
 
+#Time to wait between function calls in order to avoid timeout
+timeout = 15
 
 #Check individual items
 def displayItems(urlDict):
@@ -32,7 +24,7 @@ def displayItems(urlDict):
 		
 		#Make sure URL response is OK
 		if response.status_code != requests.codes.ok:
-			raise ValueError('Response code not 200, instead ' + response)
+			raise ValueError('Response code not 200, instead ' + str(response))
 
 		else:
 			#Get HTML contents of site
@@ -51,7 +43,9 @@ def displayItems(urlDict):
 			print("\tSell price: " + sellPrice)
 			print("\tApproximate profit: " + profit)
 	
-	print("----------------------")
+	#Pause for `timeout` seconds to avoid timeout
+	print("\n\tProgram idle for " + str(timeout) + " seconds to avoid timeout", flush=True)
+	time.sleep(timeout)
 
 
 
@@ -70,7 +64,7 @@ def displaySets(setDict):
 		
 		#Make sure URL response is OK
 		if response.status_code != requests.codes.ok:
-			raise ValueError('Response code not 200, instead ' + response)
+			raise ValueError('Response code not 200, instead ' + str(response))
 
 		else:
 			#Get HTML contents of site
@@ -93,9 +87,15 @@ def displaySets(setDict):
 	print("\nTotal price for individual items: " + str(individualPrice))
 	print("Total price for set: " + str(setPrice))
 	print("Profit per set: " + str(profit) + " (" + str(round(100*profit/individualPrice, 2)) + "%)")
-	print("----------------------")
-
+	
+	#Pause for `timeout` seconds to avoid timeout
+	print("\n\tProgram idle for " + str(timeout) + " seconds to avoid timeout", flush=True)
+	time.sleep(timeout)
 
 #Running code
-displayItems(items)
 displaySets(ancientPageSet)
+displaySets(zamorakPageSet)
+displaySets(armadylPageSet)
+displaySets(bandosPageSet)
+displaySets(saradominPageSet)
+displaySets(guthixPageSet)
