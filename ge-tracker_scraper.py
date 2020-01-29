@@ -10,10 +10,6 @@ print()
 from items import *
 from sets import *
 
-
-#Time to wait between function calls in order to avoid timeout
-timeout = 15
-
 #Check individual items
 def displayItems(urlDict):
 
@@ -42,11 +38,6 @@ def displayItems(urlDict):
 			print("\tOffer price: " + offerPrice)
 			print("\tSell price: " + sellPrice)
 			print("\tApproximate profit: " + profit)
-	
-	#Pause for `timeout` seconds to avoid timeout
-	print("\n\tProgram idle for " + str(timeout) + " seconds to avoid timeout", flush=True)
-	time.sleep(timeout)
-
 
 
 #Check sets
@@ -87,15 +78,51 @@ def displaySets(setDict):
 	print("\nTotal price for individual items: " + str(individualPrice))
 	print("Total price for set: " + str(setPrice))
 	print("Profit per set: " + str(profit) + " (" + str(round(100*profit/individualPrice, 2)) + "%)")
-	
-	#Pause for `timeout` seconds to avoid timeout
-	print("\n\tProgram idle for " + str(timeout) + " seconds to avoid timeout", flush=True)
-	time.sleep(timeout)
+	print()
+
+gs
+# Pause for x amount of seconds to avoid timeout
+def timeout(time):
+	print("\n\tProgram idle for " + str(time) + " seconds to avoid timeout", flush=True)
+	time.sleep(time)
+
+
 
 #Running code
-displaySets(ancientPageSet)
-displaySets(zamorakPageSet)
-displaySets(armadylPageSet)
-displaySets(bandosPageSet)
-displaySets(saradominPageSet)
-displaySets(guthixPageSet)
+while True:
+
+	print("What would you like to look up?")
+	userinput = input()
+	print()
+
+	if "arma" in userinput:
+		displaySets(armadylPageSet)
+	elif "sara" in userinput:
+		displaySets(saradominPageSet)
+	elif "bandos" in userinput:
+		displaySets(bandosPageSet)
+	elif "ancient" in userinput:
+		displaySets(ancientPageSet)
+	elif "zam" in userinput:
+		displaySets(zamorakPageSet)
+	elif "guthix" in userinput:
+		displaySets(guthixPageSet)
+	elif "item" in userinput:
+		displayItems(items)
+	elif "all" in userinput:
+		displayItems(items)
+		timeout(10)
+		displaySets(armadylPageSet)
+		timeout(10)
+		displaySets(saradominPageSet)
+		timeout(10)
+		displaySets(bandosPageSet)
+		timeout(10)
+		displaySets(ancientPageSet)
+		timeout(10)
+		displaySets(zamorakPageSet)
+		timeout(10)
+		displaySets(guthixPageSet)
+	elif "exit" in userinput:
+		exit()
+
