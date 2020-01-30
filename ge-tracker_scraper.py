@@ -80,10 +80,7 @@ def displaySets(setDict):
 	print("Profit per set: " + str(profit) + " (" + str(round(100*profit/individualPrice, 2)) + "%)")
 	print()
 
-<<<<<<< HEAD
-=======
-gs
->>>>>>> d9b08a2b52fd7d2f5479c1a3ff1a605e92beb211
+
 # Pause for x amount of seconds to avoid timeout
 def timeout(time):
 	print("\n\tProgram idle for " + str(time) + " seconds to avoid timeout", flush=True)
